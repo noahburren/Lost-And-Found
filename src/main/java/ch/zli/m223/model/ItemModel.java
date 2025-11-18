@@ -18,4 +18,16 @@ public class ItemModel extends PanacheEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     public CategoryModel category;
+
+
+public ItemModel() {}
+
+public ItemModel(String title, String description, String type, String location, LocalDate date, CategoryModel category) {
+    this.title = title;
+    this.description = description;
+    this.type = type;
+    this.location = location;
+    this.date = date;
+    this.category = category;
+}
 }

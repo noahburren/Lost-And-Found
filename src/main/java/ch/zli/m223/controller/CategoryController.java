@@ -1,7 +1,8 @@
 package ch.zli.m223.controller;
 
 import ch.zli.m223.model.CategoryModel;
-import jakarta.transaction.Transactional;
+import ch.zli.m223.service.CategoryService;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import java.util.List;
@@ -11,15 +12,16 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class CategoryController {
 
+    @Inject
+    CategoryService categoryService;
+
     @GET
     public List<CategoryModel> getAll() {
-        return CategoryModel.listAll();
+        return categoryService.getAll();
     }
 
     @POST
-    @Transactional
     public CategoryModel create(CategoryModel category) {
-        category.persist();
-        return category;
+        return categoryService.create(category);
     }
 }

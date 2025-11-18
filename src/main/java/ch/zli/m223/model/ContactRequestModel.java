@@ -16,4 +16,14 @@ public class ContactRequestModel extends PanacheEntity {
     @ManyToOne
     @JoinColumn(name = "item_id")
     public ItemModel item;
+
+    public ContactRequestModel() {
+    }
+
+    public ContactRequestModel(String message, UserModel user, ItemModel item) {
+        this.message = message;
+        this.user = user;
+        this.item = item;
+    }
+
 }

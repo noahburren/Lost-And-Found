@@ -8,4 +8,12 @@ import jakarta.persistence.Table;
 @Table(name = "category")
 public class CategoryModel extends PanacheEntity {
     public String name;
+
+    public CategoryModel() {
+    }
+
+    public CategoryModel(String name) {
+        this.name = name;
+    }
+
 }

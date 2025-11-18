@@ -1,7 +1,8 @@
 package ch.zli.m223.controller;
 
 import ch.zli.m223.model.ContactRequestModel;
-import jakarta.transaction.Transactional;
+import ch.zli.m223.service.ContactRequestService;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import java.util.List;
@@ -11,15 +12,16 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ContactRequestController {
 
+    @Inject
+    ContactRequestService service;
+
     @GET
     public List<ContactRequestModel> getAll() {
-        return ContactRequestModel.listAll();
+        return service.getAll();
     }
 
     @POST
-    @Transactional
     public ContactRequestModel create(ContactRequestModel request) {
-        request.persist();
-        return request;
+        return service.create(request);
     }
 }
