@@ -1,19 +1,19 @@
-package ch.zli.m223.entities;
+package ch.zli.m223.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "contact_request")
-public class ContactRequest extends PanacheEntity {
+public class ContactRequestModel extends PanacheEntity {
 
     public String message;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    public User user;
+    public UserModel user;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
-    public Item item;
+    public ItemModel item;
 }

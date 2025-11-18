@@ -1,4 +1,4 @@
-package ch.zli.m223.entities;
+package ch.zli.m223.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "item")
-public class Item extends PanacheEntity {
+public class ItemModel extends PanacheEntity {
 
     public String title;
     public String description;
@@ -17,5 +17,5 @@ public class Item extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    public Category category;
+    public CategoryModel category;
 }

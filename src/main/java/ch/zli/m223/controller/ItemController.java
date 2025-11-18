@@ -1,24 +1,25 @@
-package ch.zli.m223.resources;
+package ch.zli.m223.controller;
 
-import ch.zli.m223.entities.Item;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
+import ch.zli.m223.model.ItemModel;
+
 @Path("/items")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ItemResource {
+public class ItemController {
 
     @GET
-    public List<Item> getAll() {
-        return Item.listAll();
+    public List<ItemModel> getAll() {
+        return ItemModel.listAll();
     }
 
     @POST
     @Transactional
-    public Item create(Item item) {
+    public ItemModel create(ItemModel item) {
         item.persist();
         return item;
     }
