@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  app: 
+    image: maven:3.9-eclipse-temurin-21
+    volumes: 
+      - ..:/workspace:cached
+    working_dir: /workspace
+    command: sleep infinity
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: lost_and_found
+    environment:
+      POSTGRES_DB: lost_and_found
+      POSTGRES_USER: lost_and_found
+      POSTGRES_PASSWORD: lost_and_found
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lost_and_found"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

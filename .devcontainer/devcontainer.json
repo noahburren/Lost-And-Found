@@ -1,8 +1,16 @@
 {
-  "name": "Lost And Found",
-  "image": "maven:3.9-eclipse-temurin-21",
+  "name": "Quarkus Dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "runServices": [
+    "app",
+    "postgres"
+  ],
+  "shutdownAction": "stopCompose",
   "forwardPorts": [
-    8080
+    8080,
+    5432
   ],
   "postCreateCommand": "mvn -q -DskipTests clean install",
   "remoteUser": "root"
