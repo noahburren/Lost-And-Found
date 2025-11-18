@@ -2,6 +2,8 @@ package ch.zli.m223.controller;
 
 import java.util.List;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+
 import ch.zli.m223.model.UserModel;
 import ch.zli.m223.service.UserService;
 import jakarta.inject.Inject;
@@ -21,6 +23,7 @@ public class UserController {
     UserService service;
 
     @GET
+    @Operation(summary = "Index all Users.", description = "Returns a list of all Users.")
     public List<UserModel> getAll() {
         return service.getAll();
     }

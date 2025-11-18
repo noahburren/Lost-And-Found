@@ -7,6 +7,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+
 @Path("/categories")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -16,6 +18,7 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GET
+    @Operation(summary = "Index all Categories.", description = "Returns a list of all categories.")
     public List<CategoryModel> getAll() {
         return categoryService.getAll();
     }

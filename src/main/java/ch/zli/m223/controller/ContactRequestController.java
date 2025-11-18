@@ -7,6 +7,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+
 @Path("/contact-requests")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -16,6 +18,7 @@ public class ContactRequestController {
     ContactRequestService service;
 
     @GET
+    @Operation(summary = "Index all Contact Requests.", description = "Returns a list of all Contact Requests.")
     public List<ContactRequestModel> getAll() {
         return service.getAll();
     }
