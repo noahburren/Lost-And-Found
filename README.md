@@ -1,63 +1,108 @@
-# lost_and_found
+# Lost & Found – Quarkus Backend
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Dies ist das Backend der *Lost & Found* Web-Applikation.  
+Die Anwendung ermöglicht es Benutzer:innen, verlorene Gegenstände zu melden, gefundene Items zu erfassen und Kontaktanfragen zu verwalten.  
+Zusätzlich beinhaltet das Projekt eine einfache Benutzerverwaltung mit JWT-Authentifizierung.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Das Projekt basiert auf **Quarkus**, dem Supersonic Subatomic Java Framework.  
+Weitere Infos: https://quarkus.io
 
-## Running the application in dev mode
+---
 
-You can run your application in dev mode that enables live coding using:
+## 🚀 Features
 
-```shell script
+### ✔ Benutzerverwaltung
+- Signup inkl. Passwort-Hashing (BCrypt)
+- Rollenvergabe:
+  - **Admin** → Name = „Noah Burren“
+  - **User** → alle anderen
+- Login via JWT (SmallRye JWT)
+
+### ✔ Kategorien
+- Kategorien abrufen
+- Kategorien erstellen
+
+### ✔ Items (found / lost)
+- Items erstellen
+- Alle Items abrufen
+
+### ✔ Kontaktanfragen
+- Kontaktanfragen zu Items erstellen
+- Alle Kontaktanfragen abrufen
+
+### ✔ Authentifizierung & Autorisierung
+- Login-Endpoint → JWT
+- Rollenvalidierung via `@RolesAllowed`
+- Swagger-UI unterstützt JWT-Bearer Tokens
+
+---
+
+## 🧪 REST-API Übersicht (Swagger UI)
+
+Teste alle Endpoints direkt unter:
+
+http://localhost:8080/q/swagger-ui
+
+
+---
+
+## 🔑 Wichtige Endpunkte
+
+| Endpunkt | Methode | Beschreibung | Auth |
+|----------|---------|--------------|------|
+| `/auth/login` | POST | Login, gibt JWT Token zurück | ❌ |
+| `/users/signup` | POST | Registriert neuen User | ❌ |
+| `/users` | GET | Gibt alle User zurück | ✔ Admin |
+| `/users/email/{email}` | GET | Findet User nach Email | ✔ Admin |
+| `/items` | GET | Alle Items abrufen | ❌ |
+| `/items` | POST | Neues Item erstellen | ❌ |
+| `/categories` | GET | Kategorien abrufen | ❌ |
+| `/categories` | POST | Kategorie erstellen | ❌ |
+| `/contact-requests` | GET | Alle Kontaktanfragen abrufen | ❌ |
+| `/contact-requests` | POST | Neue Kontaktanfrage erstellen | ❌ |
+
+---
+
+## 🖥 Anwendung starten
+
+Dev-Mode mit Live-Reload:
+
+```bash
+./mvnw quarkus:dev$
+```
+Dev-UI:
+
+```bash
 ./mvnw quarkus:dev
 ```
-
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
-
-## Packaging and running the application
-
-The application can be packaged using:
-
-```shell script
+Build (JAR)
+```bash
 ./mvnw package
 ```
-
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
+Run:
+```bash
+java -jar target/quarkus-app/quarkus-run.jar
 ```
+---
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+## 🛠 Technologien
+- Java 21
+- Quarkus
+- RESTEasy Reactive
+- Hibernate ORM Panache
+- SmallRye JWT
+- OpenAPI
+- PostgreSQL
+- Docker / DevContainer
+- BCrypt Passwort-Hashing
+---
 
-## Creating a native executable
+## 🧪 Testdaten (Seeder)
 
-You can create a native executable using:
+Beim Start werden automatisch folgende Testbenutzer erstellt:
 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/lost_and_found-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Provided Code
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
-# Lost-And-Found
+| Name         | Email             | Passwort | Rolle |
+|--------------|-------------------|----------|--------|
+| Noah Burren  | noah@example.com  | 1234     | Admin  |
+| Levi Fuchs   | levi@example.com  | 1234     | User   |
+| Random Dude  | random@example.com| 1234     | User   |
