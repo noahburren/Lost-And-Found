@@ -19,8 +19,24 @@ public class UserService {
     }
 
     @Transactional
-    public UserModel create(UserModel user) {
+    public UserModel signup(UserModel user) {
+
+        // Passwort hashen
+        String hashed = org.mindrot.jbcrypt.BCrypt.hashpw(user.password, org.mindrot.jbcrypt.BCrypt.gensalt());
+        user.password = hashed;
+
+        // Rolle bestimmen
+        if ("Noah Burren".equalsIgnoreCase(user.name.trim())) {
+            user.role = "Admin";
+        } else {
+            user.role = "User";
+        }
+
         em.persist(user);
         return user;
+    }
+
+    public UserModel findByEmail(String email) {
+        return UserModel.find("email", email).firstResult();
     }
 }

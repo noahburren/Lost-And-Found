@@ -22,16 +22,17 @@ public class DatabaseSeeder {
         @Startup
         @Transactional
         public void seed() {
-                // === USERS ===
-                UserModel u1 = new UserModel("Noah Burren", "noah@example.com");
-                UserModel u2 = new UserModel("Levi Fuchs", "levi@example.com");
-                UserModel u3 = new UserModel("Random Dude", "random@example.com");
+
+                String pw = org.mindrot.jbcrypt.BCrypt.hashpw("1234", org.mindrot.jbcrypt.BCrypt.gensalt());
+
+                UserModel u1 = new UserModel("Noah Burren", "noah@example.com", pw, "Admin");
+                UserModel u2 = new UserModel("Levi Fuchs", "levi@example.com", pw, "User");
+                UserModel u3 = new UserModel("Random Dude", "random@example.com", pw, "User");
 
                 em.persist(u1);
                 em.persist(u2);
                 em.persist(u3);
 
-                // === CATEGORIES ===
                 CategoryModel c1 = new CategoryModel("Elektronik");
                 CategoryModel c2 = new CategoryModel("Kleidung");
                 CategoryModel c3 = new CategoryModel("Dokumente");
@@ -42,23 +43,23 @@ public class DatabaseSeeder {
                 em.persist(c3);
                 em.persist(c4);
 
-                // === ITEMS ===
                 ItemModel i1 = new ItemModel("iPhone 14 Pro", "Schwarzes iPhone ohne Hülle", "lost", "Zürich HB",
                                 LocalDate.parse("2025-11-10"), c1);
+
                 ItemModel i2 = new ItemModel("Portemonnaie", "Braunes Leder, enthält ID", "lost", "Oerlikon",
                                 LocalDate.parse("2025-11-11"), c3);
+
                 ItemModel i3 = new ItemModel("Jacke", "Schwarze Winterjacke", "found", "Glattzentrum",
                                 LocalDate.parse("2025-11-09"), c2);
+
                 ItemModel i4 = new ItemModel("Kopfhörer", "Weiße AirPods", "found", "Bellevue",
-                                LocalDate.parse("2025-11-08"),
-                                c1);
+                                LocalDate.parse("2025-11-08"), c1);
 
                 em.persist(i1);
                 em.persist(i2);
                 em.persist(i3);
                 em.persist(i4);
 
-                // === CONTACT REQUESTS ===
                 em.persist(new ContactRequestModel("Gehört mir!", u1, i3));
                 em.persist(new ContactRequestModel("Ich glaube, das ist mein iPhone", u2, i1));
                 em.persist(new ContactRequestModel("Ist das noch verfügbar?", u3, i4));

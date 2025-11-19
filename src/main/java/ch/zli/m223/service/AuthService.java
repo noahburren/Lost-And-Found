@@ -2,24 +2,34 @@ package ch.zli.m223.service;
 
 import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
-import java.util.Arrays;
-import java.util.HashSet;
+
+import ch.zli.m223.model.UserModel;
 
 @ApplicationScoped
 public class AuthService {
 
-    public Response generateToken() {
-        try {
-            String token = Jwt.upn("jdoe@quarkus.io")
-                    .issuer("https://example.com/issuer")
-                    .groups(new HashSet<>(Arrays.asList("User", "Admin")))
-                    .sign();
+    @Inject
+    UserService userService;
 
-            return Response.ok(token).build();
+    public Response login(String email, String password) {
+        UserModel user = userService.findByEmail(email);
 
-        } catch (Exception e) {
-            return Response.serverError().entity(e.getMessage()).build();
+        if (user == null) {
+            return Response.status(401).entity("User not found").build();
         }
+
+        boolean pwValid = org.mindrot.jbcrypt.BCrypt.checkpw(password, user.password);
+        if (!pwValid) {
+            return Response.status(401).entity("Invalid password").build();
+        }
+
+        String token = Jwt.upn(user.email)
+                .issuer("https://example.com/issuer")
+                .groups(user.role) // Admin oder User
+                .sign();
+
+        return Response.ok(token).build();
     }
 }

@@ -9,13 +9,16 @@ import jakarta.persistence.Table;
 public class UserModel extends PanacheEntity {
     public String name;
     public String email;
+    public String password; // hashed
+    public String role; // Admin oder User
 
     public UserModel() {
     }
 
-    public UserModel(String name, String email) {
+    public UserModel(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
-
 }
