@@ -31,4 +31,11 @@ public class UserController {
     public UserModel signup(UserModel user) {
         return service.signup(user);
     }
+
+    @GET
+    @RolesAllowed("Admin")
+    @Path("/email/{email}")
+    public UserModel findByEmail(@PathParam("email") String email) {
+        return service.findByEmail(email);
+    }
 }
