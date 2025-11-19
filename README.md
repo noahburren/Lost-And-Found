@@ -53,13 +53,13 @@ http://localhost:8080/q/swagger-ui
 | `/auth/login` | POST | Login, gibt JWT Token zurück | ❌ |
 | `/users/signup` | POST | Registriert neuen User | ❌ |
 | `/users` | GET | Gibt alle User zurück | ✔ Admin |
-| `/users/email/{email}` | GET | Findet User nach Email | ✔ Admin |
-| `/items` | GET | Alle Items abrufen | ✔ Admin & ✔ User |
-| `/items` | POST | Neues Item erstellen | ✔ Admin & ✔ User |
-| `/categories` | GET | Kategorien abrufen | ✔ Admin & ✔ User |
-| `/categories` | POST | Kategorie erstellen | ✔ Admin & ✔ User |
-| `/contact-requests` | GET | Alle Kontaktanfragen abrufen | ✔ Admin & ✔ User |
-| `/contact-requests` | POST | Neue Kontaktanfrage erstellen | ✔ Admin & ✔ User |
+| `/users/email/{email}` | GET | Findet User nach Email | Admin |
+| `/items` | GET | Alle Items abrufen | ✔ Admin & User |
+| `/items` | POST | Neues Item erstellen | ✔ Admin & User |
+| `/categories` | GET | Kategorien abrufen | ✔ Admin & User |
+| `/categories` | POST | Kategorie erstellen | ✔ Admin & User |
+| `/contact-requests` | GET | Alle Kontaktanfragen abrufen | ✔ Admin & User |
+| `/contact-requests` | POST | Neue Kontaktanfrage erstellen | ✔ Admin & User |
 
 ---
 
