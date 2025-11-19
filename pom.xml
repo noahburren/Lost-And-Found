@@ -20,7 +20,7 @@
         <quarkus.platform.version>3.29.3</quarkus.platform.version>
 
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
-        <skipITs>true</skipITs>
+        <skipITs>false</skipITs>
     </properties>
 
     <dependencyManagement>
@@ -94,6 +94,11 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-h2</artifactId>
             <scope>test</scope>
         </dependency>
 
