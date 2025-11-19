@@ -54,11 +54,7 @@ http://localhost:8080/q/swagger-ui
 | `/users/signup` | POST | Registriert neuen User | ❌ |
 | `/users` | GET | Gibt alle User zurück | ✔ Admin |
 | `/users/email/{email}` | GET | Findet User nach Email | Admin |
-<<<<<<< HEAD
 | `/items` | GET | Alle Items abrufen | ✔ Admin & User |
-=======
-| `/items` | GET | Alle Items abrufen | ✔ Admin & ✔ User |
->>>>>>> 4b4d7983c9b8d3fdbbd79f2e6f07e38087062c92
 | `/items` | POST | Neues Item erstellen | ✔ Admin & User |
 | `/categories` | GET | Kategorien abrufen | ✔ Admin & User |
 | `/categories` | POST | Kategorie erstellen | ✔ Admin & User |
