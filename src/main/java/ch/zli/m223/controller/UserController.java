@@ -6,6 +6,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import ch.zli.m223.model.UserModel;
 import ch.zli.m223.service.UserService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -23,6 +24,7 @@ public class UserController {
     UserService service;
 
     @GET
+    @RolesAllowed("Admin")
     @Operation(summary = "Index all Users.", description = "Returns a list of all Users.")
     public List<UserModel> getAll() {
         return service.getAll();
