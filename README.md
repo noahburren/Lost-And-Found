@@ -106,3 +106,14 @@ Beim Start werden automatisch folgende Testbenutzer erstellt:
 | Noah Burren  | noah@example.com  | 1234     | Admin  |
 | Levi Fuchs   | levi@example.com  | 1234     | User   |
 | Random Dude  | random@example.com| 1234     | User   |
+
+## 🧪 Unit-Test Fälle für UserService / AuthService
+
+| Name des Tests | Parameter | Erwartetes Resultat |
+|----------------|-----------|----------------------|
+| signup_shouldCreateAdminForNoah | name = "Noah Burren", email, password | User wird mit Rolle **Admin** erstellt |
+| signup_shouldCreateNormalUser | name ≠ "Noah Burren", email, password | User wird mit Rolle **User** erstellt |
+| signup_shouldHashPassword | name, email, password="1234" | Gespeichertes Passwort ist **nicht** "1234", sondern ein BCrypt-Hash |
+| login_shouldReturnTokenForValidCredentials | email + korrektes Passwort | JWT Token wird zurückgegeben |
+| login_shouldFailForInvalidPassword | email + falsches Passwort | 401 Invalid password |
+| login_shouldFailForUnknownEmail | email nicht in DB | 401 User not found |
