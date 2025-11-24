@@ -13,12 +13,5 @@
     5432
   ],
   "postCreateCommand": "mvn -q -DskipTests clean install",
-  "remoteUser": "root",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "redhat.vscode-quarkus"
-      ]
-    }
-  }
+  "remoteUser": "root"
 }
