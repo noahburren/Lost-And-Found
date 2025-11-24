@@ -117,3 +117,7 @@ Beim Start werden automatisch folgende Testbenutzer erstellt:
 | login_shouldReturnTokenForValidCredentials | email + korrektes Passwort | JWT Token wird zurückgegeben |
 | login_shouldFailForInvalidPassword | email + falsches Passwort | 401 Invalid password |
 | login_shouldFailForUnknownEmail | email nicht in DB | 401 User not found |
+
+---
+## 🔗 Frontend Repository
+➡️ [Lost & Found Frontend (Angular)](https://github.com/noahburren/Lost-And-Found-Frontend)
